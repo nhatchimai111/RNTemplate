@@ -1,0 +1,5 @@
+
+export default {
+  IOS_X_STATUS_BAR_HEIGHT: 44,
+  IOS_STATUS_BAR_HEIGHT: 20
+};

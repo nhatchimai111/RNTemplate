@@ -1,7 +1,7 @@
 import { StackNavigator, TabNavigator, TabBarBottom, DrawerNavigator } from 'react-navigation';
 
 import getSlideFromRightTransition from './SlideFromRightTransition';
-import ScreenKey from '../Constants/ScreenKey';
+import {ScreenKey} from '../Constants';
 
 import SignupScreen from '../Containers/SignupScreen';
 import LoginScreen from '../Containers/LoginScreen';

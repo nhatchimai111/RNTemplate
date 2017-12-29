@@ -1,7 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import { NavigationActions } from 'react-navigation';
-import ScreenKey from '../Constants/ScreenKey';
+
+import I18n from '../I18n';
+import { ScreenKey } from '../Constants';
+import { Images, Colors, Metrics } from '../Themes';
+
+import Button from '../Components/Common/Button';
 
 export default class DrawerContainer extends React.Component {
 
@@ -17,29 +22,63 @@ export default class DrawerContainer extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props
+    const { navigation: { navigate } } = this.props
     return (
       <View style={styles.container}>
-        <Text
-          onPress={() => navigation.navigate(ScreenKey.HOME_SCREEN)}
-          style={styles.uglyDrawerItem}>
-          Home Screen
-        </Text>
-        <Text
-          onPress={() => navigation.navigate(ScreenKey.A_STACK)}
-          style={styles.uglyDrawerItem}>
-          A Screen
-        </Text>
-        <Text
-          onPress={() => navigation.navigate(ScreenKey.B_SCREEN)}
-          style={styles.uglyDrawerItem}>
-          B Screen
-        </Text>
-        <Text
-          onPress={this.logout}
-          style={styles.uglyDrawerItem}>
-          Log Out
-        </Text>
+
+        <View style={styles.header}>
+          <View style={styles.avatarWrapper}>
+            <Image source={require('../Images/android.png')} resizeMode={Image.resizeMode.contain}
+              style={styles.avatarImage} />
+          </View>
+        </View>
+
+        <ScrollView contentContainerStyle={styles.body}>
+
+          <Button onPress={() => navigate(ScreenKey.HOME_SCREEN)}
+            labelWrapper={styles.labelButtonWrapper}
+            label={I18n.t('home')}
+            buttonStyle={[styles.buttonWrapper, {backgroundColor: Colors.blueSky, borderRadius: 0}]}
+            labelText={[{color: Colors.white}]}
+            iconWrapper={styles.iconWrapper}
+            iconType={'Entypo'}
+            name={'home'}
+            iconColor={Colors.white}
+          />
+
+          <Button onPress={() => navigate(ScreenKey.A_STACK)}
+            labelWrapper={styles.labelButtonWrapper}
+            label={I18n.t('aScreen')}
+            buttonStyle={[styles.buttonWrapper]}
+            labelText={styles.labelButtonText}
+            iconWrapper={styles.iconWrapper}
+            iconType={'MaterialCommunityIcons'}
+            name={'projector-screen'}
+            iconColor={Colors.black}
+          />
+
+          <Button onPress={() => navigate(ScreenKey.B_SCREEN)}
+            labelWrapper={styles.labelButtonWrapper}
+            label={I18n.t('bScreen')}
+            buttonStyle={[styles.buttonWrapper]}
+            labelText={styles.labelButtonText}
+            iconWrapper={styles.iconWrapper}
+            iconType={'MaterialCommunityIcons'}
+            name={'fullscreen-exit'}
+            iconColor={Colors.black}
+          />
+
+          <Button onPress={() => navigate(ScreenKey.HOME_SCREEN)}
+            labelWrapper={styles.labelButtonWrapper}
+            label={I18n.t('logOut')}
+            buttonStyle={[styles.buttonWrapper]}
+            labelText={styles.labelButtonText}
+            iconWrapper={styles.iconWrapper}
+            iconType={'MaterialCommunityIcons'}
+            name={'logout'}
+            iconColor={Colors.black}
+          />
+        </ScrollView>
       </View>
     )
   }
@@ -48,19 +87,48 @@ export default class DrawerContainer extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f6f6f6',
-    paddingTop: 40,
-    paddingHorizontal: 20
   },
-  uglyDrawerItem: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#E73536',
-    padding: 15,
-    margin: 5,
-    borderRadius: 2,
-    borderColor: '#E73536',
-    borderWidth: 1,
-    textAlign: 'center'
+  header: {
+    flex: 0.4,
+    backgroundColor: Colors.blueSky,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  body: {
+    flex: 0.6
+  },
+  avatarWrapper: {
+    backgroundColor: Colors.white,
+    borderRadius: 50
+  },
+  avatarImage: {
+    width: 100,
+    height: 100
+  },
+  buttonWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Metrics.screenWidth,
+    height: 50,
+    // backgroundColor: 'green',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  labelButtonText: {
+    color: Colors.black,
+    // fontWeight: 'bold',
+  },
+  iconWrapper: {
+    flex: 0.2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'yellow',
+
+  },
+  labelButtonWrapper: {
+    flex: 0.8,
+    alignItems: 'flex-start',
+    // backgroundColor: 'blue',
+
   }
 })

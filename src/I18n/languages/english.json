@@ -1,0 +1,9 @@
+{
+   "logIn": "Login Screen",
+   "signUp": "SignUp Screen",
+   "home": "Home Screen",
+   "aScreen": "A Screen",
+   "aDetailScreen": "A Detail Screen",
+   "bScreen": "B Screen",
+   "logOut": "Logout"
+}

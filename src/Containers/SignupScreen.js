@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import {
-  View, 
+  View,
   Text,
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import ScreenKey from '../Constants/ScreenKey';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+import { ScreenKey } from '../Constants';
+import { Colors } from '../Themes';
+import I18n from '../I18n';
+
+import NavBar from '../Components/Common/NavBar';
+import Button from '../Components/Common/Button';
 
 class SignupScreen extends Component {
 
@@ -15,21 +22,51 @@ class SignupScreen extends Component {
   }
 
   render() {
+    // return (
+    //   <View>
+    //     <Text>{'Signup Screen'}</Text>
+    //     <TouchableOpacity onPress={this.onPressSignup}>
+    //       <Text>{'Go to Home Screen'}</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    // );
+
     return (
-      <View>
-        <Text>{'Signup Screen'}</Text>
-        <TouchableOpacity onPress={this.onPressSignup}>
-          <Text>{'Go to Home Screen'}</Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+
+        <NavBar title={I18n.t('signUp')}
+          isHideLeftButton
+          isHideRightButton
+        />
+
+        <View style={[styles.body]}>
+
+          <Button onPress={() => this.onPressSignup()}
+            labelWrapper={styles.loginLabelWrapper}
+            label={I18n.t('signUp')}
+            buttonStyle={[styles.button]}
+            labelStyle={styles.titleText}
+            isHideIcon
+          />
+
+          {/* <Button onPress={() => this.props.navigation.navigate(ScreenKey.SIGNUP_SCREEN)}
+            labelWrapper={styles.loginLabelWrapper}
+            label={I18n.t('signUp')}
+            buttonStyle={[styles.button]}
+            labelStyle={styles.titleText}
+            isHideIcon
+          /> */}
+        </View>
       </View>
     );
+
   }
 
   onPressSignup = () => {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV})
+        NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV })
       ]
     })
     this.props.navigation.dispatch(resetAction)
@@ -43,7 +80,39 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
+
+const styles = EStyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.white,
+
+  },
+  body: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  loginLabelWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'blue',
+    // paddingLeft: 10,
+    // paddingRight: 20,
+  },
+  loginIconWrapper: {
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingLeft: 10
+  },
+  button: {
+    width: 150,
+    height: 50,
+    backgroundColor: Colors.blueSky,
+    margin: 10
+  }
+});
