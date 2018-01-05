@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import configureStore from './CreateStore';
-// import rootSaga from '../Sagas/';
+import rootSaga from '../Sagas';
 import AppNavigation from '../Navigation/AppNavigation';
 
 const navReducer = (state, action) => {
@@ -11,8 +11,9 @@ const navReducer = (state, action) => {
 export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    nav: navReducer
+    nav: navReducer,
+    Movies: require('./MoviesRedux').reducer
   })
 
-  return configureStore(rootReducer, null);
+  return configureStore(rootReducer, rootSaga);
 }

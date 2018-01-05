@@ -50,9 +50,6 @@ const LoginStack = StackNavigator({
   }
 )
 
-
-
-
 const MainStack = StackNavigator({
   [ScreenKey.LOGIN_STACK] : { screen: LoginStack },
   // [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
