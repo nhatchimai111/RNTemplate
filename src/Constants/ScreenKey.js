@@ -2,6 +2,7 @@ module.exports = {
     DRAWER_TOGGLE: "DrawerToggle",
     LOGIN_STACK: "LoginStack",
     DRAWER_NAV: "DrawerNav",
+    SPLASH_SCREEN: 'SplashScreen',
     HOME_SCREEN: 'HomeScreen',
     LOGIN_SCREEN: 'LoginScreen',
     SIGNUP_SCREEN: 'SignupScreen',

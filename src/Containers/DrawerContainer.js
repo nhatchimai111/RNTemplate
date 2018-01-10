@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import I18n from '../I18n';
 import { ScreenKey } from '../Constants';
@@ -8,18 +9,20 @@ import { Images, Colors, Metrics } from '../Themes';
 
 import Button from '../Components/Common/Button';
 
-export default class DrawerContainer extends React.Component {
+import LoginActions from '../Redux/LoginRedux';
 
-  logout = () => {
-    // This will reset back to loginStack
-    // https://github.com/react-community/react-navigation/issues/1127
-    const actionToDispatch = NavigationActions.reset({
-      index: 0,
-      key: null,  // black magic
-      actions: [NavigationActions.navigate({ routeName: ScreenKey.LOGIN_STACK })]
-    })
-    this.props.navigation.dispatch(actionToDispatch)
-  }
+class DrawerContainer extends Component {
+
+  // logOut = () => {
+  //   // This will reset back to loginStack
+  //   // https://github.com/react-community/react-navigation/issues/1127
+  //   const actionToDispatch = NavigationActions.reset({
+  //     index: 0,
+  //     key: null,  // black magic
+  //     actions: [NavigationActions.navigate({ routeName: ScreenKey.LOGIN_SCREEN })]
+  //   })
+  //   this.props.navigation.dispatch(actionToDispatch)
+  // }
 
   render() {
     const { navigation: { navigate } } = this.props
@@ -68,9 +71,9 @@ export default class DrawerContainer extends React.Component {
             iconColor={Colors.black}
           />
 
-          <Button onPress={() => navigate(ScreenKey.HOME_SCREEN)}
+          <Button onPress={() => navigate(() => this.props.logout())}
             labelWrapper={styles.labelButtonWrapper}
-            label={I18n.t('logOut')}
+            label={I18n.t('logout')}
             buttonStyle={[styles.buttonWrapper]}
             labelText={styles.labelButtonText}
             iconWrapper={styles.iconWrapper}
@@ -83,6 +86,20 @@ export default class DrawerContainer extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(LoginActions.logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerContainer);
 
 const styles = StyleSheet.create({
   container: {
@@ -116,6 +133,7 @@ const styles = StyleSheet.create({
   },
   labelButtonText: {
     color: Colors.black,
+    // fontSize: 10
     // fontWeight: 'bold',
   },
   iconWrapper: {

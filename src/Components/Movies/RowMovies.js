@@ -13,19 +13,19 @@ export default class RowMovies extends PureComponent {
   }
 
   render() {
-    console.log('====================================');
-    console.log('RowMovies render this.props: ', this.props);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log('RowMovies render this.props: ', this.props);
+    // console.log('====================================');
     const { movie } = this.props;
 
     return !movie ? null :
       (
         <View style={styles.container}>
           <View style={styles.releaseYearWrapper}>
-            <Text>{movie.item.releaseYear}</Text>
+            <Text style={styles.text}>{movie.item.releaseYear}</Text>
           </View>
           <View style={styles.titleWrapper}>
-            <Text>{movie.item.title}</Text>
+            <Text style={styles.text}>{movie.item.title}</Text>
           </View>
         </View>
       );
@@ -43,8 +43,8 @@ const styles = EStyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     paddingLeft: 10,
-    paddingTop: 10, 
-    paddingBottom: 10, 
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   releaseYearWrapper: {
     width: '30%'
@@ -53,7 +53,7 @@ const styles = EStyleSheet.create({
     width: '70%'
   },
   text: {
-    color: Colors.black, 
-    fontSize: 12
+    color: Colors.black,
+    fontSize: 14
   }
 });

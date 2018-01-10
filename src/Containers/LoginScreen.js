@@ -2,24 +2,31 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput,
+  Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import {ScreenKey} from '../Constants';
-import { Colors } from '../Themes';
+import { ScreenKey } from '../Constants';
+import { Colors, Metrics } from '../Themes';
 import I18n from '../I18n';
 
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
+import LoginActions from '../Redux/LoginRedux';
 
 class LoginScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      userName: "",
+      passWord: ""
+    }
   }
 
   render() {
@@ -33,6 +40,35 @@ class LoginScreen extends Component {
         />
 
         <View style={[styles.body]}>
+
+          <View style={[styles.inputInfoWrapper]}>
+            <TextInput
+              ref={(email) => (this.inputEmail = email)}
+              style={{color: Colors.black, marginBottom: Platform.OS === 'ios' ? 20 : 0 }}
+              placeholder={I18n.t('userName').toUpperCase()}
+              keyboardType={'email-address'}
+              returnKeyType={'next'}
+              autoCapitalize={'none'}
+              underlineColorAndroid={'transparent'}
+              onSubmitEditing={() => this.inputPassword.focus()}
+              value={this.state.userName}
+              onChangeText={text => this.setState({ userName: text })}
+            />
+
+            <TextInput
+              ref={(password) => (this.inputPassword = password)}
+              style={{ color: Colors.black }}
+              placeholder={I18n.t('passWord').toUpperCase()}
+              secureTextEntry={true}
+              autoCapitalize={'none'}
+              returnKeyType={'done'}
+              underlineColorAndroid={'transparent'}
+              onSubmitEditing={() => this.onPressLogin()}
+              value={this.state.passWord}
+              onChangeText={text => this.setState({ passWord: text })}
+            />
+
+          </View>
 
           <Button onPress={() => this.onPressLogin()}
             labelWrapper={styles.loginLabelWrapper}
@@ -55,24 +91,33 @@ class LoginScreen extends Component {
   }
 
   onPressLogin = () => {
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV })
-      ]
-    })
-    this.props.navigation.dispatch(resetAction)
+    // const resetAction = NavigationActions.reset({
+    //   index: 0,
+    //   actions: [
+    //     NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV })
+    //   ]
+    // })
+    // this.props.navigation.dispatch(resetAction)
+
+    const { userName, passWord } = this.state
+    // attempt a login - a saga is listening to pick it up from here.
+    this.props.login(userName, passWord)
 
     // this.props.navigation.navigate('BScreen')
   }
 }
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching
+  }
+}
 
-const mapDispatchToProps = (dispatch) => ({
-
-})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userName, passWord) => dispatch(LoginActions.loginRequest(userName, passWord))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
@@ -100,10 +145,18 @@ const styles = EStyleSheet.create({
     alignItems: 'flex-end',
     paddingLeft: 10
   },
-  button:{
-    width: 150, 
-    height: 50, 
-    backgroundColor: Colors.blueSky, 
+  button: {
+    width: 150,
+    height: 50,
+    backgroundColor: Colors.blueSky,
     margin: 10
+  },
+  inputInfoWrapper: {
+    // marginTop: 10,
+    // marginLeft: 30,
+    // marginRight: 30,
+    height: Metrics.screenHeight / 3,
+    width: Metrics.screenWidth - 40,
+    // backgroundColor: 'green'
   }
 });

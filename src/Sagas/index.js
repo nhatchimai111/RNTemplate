@@ -6,12 +6,14 @@ import DebugConfig from '../Config/DebugConfig';
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux';
+import { LoginTypes } from '../Redux/LoginRedux';
 import { MoviesTypes } from '../Redux/MoviesRedux';
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas';
 import { getMovies } from './MoviesSagas';
+import { login } from './LoginSagas';
 
 /* ------------- API ------------- */
 
@@ -25,6 +27,7 @@ export default function * root () {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
+    takeLatest(LoginTypes.LOGIN_REQUEST, login),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(MoviesTypes.GET_MOVIES_REQUEST, getMovies, api)

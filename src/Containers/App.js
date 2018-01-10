@@ -1,10 +1,12 @@
+import React, { Component } from 'react';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import RootContainer from './RootContainer';
 import createStore from '../Redux';
-import EStyleSheet from 'react-native-extended-stylesheet';
+
 EStyleSheet.build();
 // create our store
 const store = createStore()

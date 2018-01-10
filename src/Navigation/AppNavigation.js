@@ -3,6 +3,7 @@ import { StackNavigator, TabNavigator, TabBarBottom, DrawerNavigator } from 'rea
 import getSlideFromRightTransition from './SlideFromRightTransition';
 import {ScreenKey} from '../Constants';
 
+import SplashScreen from '../Containers/SplashScreen';
 import SignupScreen from '../Containers/SignupScreen';
 import LoginScreen from '../Containers/LoginScreen';
 import HomeScreen from '../Containers/HomeScreen';
@@ -50,17 +51,21 @@ const LoginStack = StackNavigator({
   }
 )
 
-const MainStack = StackNavigator({
-  [ScreenKey.LOGIN_STACK] : { screen: LoginStack },
-  // [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
-
+const MainNav = StackNavigator({
+  // [ScreenKey.LOGIN_STACK] : { screen: LoginStack },
+  [ScreenKey.SPLASH_SCREEN]: { screen: SplashScreen },
+  [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
+  [ScreenKey.LOGIN_SCREEN]: { screen: LoginScreen },
+  [ScreenKey.SIGNUP_SCREEN]: { screen: SignupScreen },
+  
 }, {
     headerMode: 'none',
-    initialRouteName: ScreenKey.LOGIN_STACK,
+    // initialRouteName: ScreenKey.LOGIN_STACK,
+    // initialRouteName: ScreenKey.SPLASH_SCREEN,
     //   cardStyle: styles.card,
     transitionConfig: getSlideFromRightTransition,
     // mode: 'modal'
   }
 )
 
-export default MainStack;
+export default MainNav;

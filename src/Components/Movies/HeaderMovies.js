@@ -4,7 +4,9 @@ import {
   Text,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
 import { Colors } from '../../Themes';
+import I18n from '../../I18n';
 
 export default class HeaderMovies extends PureComponent {
 
@@ -16,10 +18,10 @@ export default class HeaderMovies extends PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.releaseYearWrapper}>
-          <Text style={styles.text}>{`Release Year`}</Text>
+          <Text style={styles.text}>{I18n.t('releaseYear')}</Text>
         </View>
         <View style={styles.titleWrapper}>
-          <Text style={styles.text}>{'Title'}</Text>
+          <Text style={styles.text}>{I18n.t('title')}</Text>
         </View>
       </View>
     );
@@ -45,6 +47,6 @@ const styles = EStyleSheet.create({
   },
   text: {
     color: Colors.white, 
-    fontSize: 14
+    fontSize: 16
   }
 });

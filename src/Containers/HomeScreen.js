@@ -52,79 +52,79 @@ class HomeScreen extends Component {
     );
   }
 
-  renderMovies = (props) => {
-    try {
-      const { moviesData: { fetching, movies } } = props;
+  // renderMovies = (props) => {
+  //   try {
+  //     const { moviesData: { fetching, movies } } = props;
 
-      if (fetching) {
-        return (<ActivityIndicator size="large" color={Colors.blueSky} />);
-      } else if (!fetching && movies) {
-        // console.log('====================================');
-        // console.log('renderMovies movies: ', movies);
-        // console.log('====================================');
-        return (
-          <View style={{ flex: 1, paddingTop: 10}}>
-            <FlatList
-              data={movies}
-              keyExtractor={movie => movie.releaseYear}
-              renderItem={this.renderMovieItem}
-              ListHeaderComponent={this.renderHeader}
-              ItemSeparatorComponent={this.renderSeparator}
-            />
-          </View>
+  //     if (fetching) {
+  //       return (<ActivityIndicator size="large" color={Colors.blueSky} />);
+  //     } else if (!fetching && movies) {
+  //       // console.log('====================================');
+  //       // console.log('renderMovies movies: ', movies);
+  //       // console.log('====================================');
+  //       return (
+  //         <View style={{ flex: 1, paddingTop: 10}}>
+  //           <FlatList
+  //             data={movies}
+  //             keyExtractor={movie => movie.releaseYear}
+  //             renderItem={this.renderMovieItem}
+  //             ListHeaderComponent={this.renderHeader}
+  //             ItemSeparatorComponent={this.renderSeparator}
+  //           />
+  //         </View>
 
-        )
-      }
-      return null;
+  //       )
+  //     }
+  //     return null;
 
-    } catch (error) {
-      console.log("renderMovies error: ", error);
-    }
+  //   } catch (error) {
+  //     console.log("renderMovies error: ", error);
+  //   }
 
-  }
+  // }
 
-  renderMovieItem = (movie) => {
+  // renderMovieItem = (movie) => {
 
-    // console.log('====================================');
-    // console.log('renderMovieItem movie: ', movie);
-    // console.log('====================================');
-    return (
-      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingLeft: 10, paddingTop: 10, paddingBottom: 10 }}>
-        <View style={{ width: '30%' }}>
-          <Text>{movie.item.releaseYear}</Text>
-        </View>
-        <View style={{ width: '70%' }}>
-          <Text>{movie.item.title}</Text>
-        </View>
-      </View>
-    )
-  }
+  //   // console.log('====================================');
+  //   // console.log('renderMovieItem movie: ', movie);
+  //   // console.log('====================================');
+  //   return (
+  //     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingLeft: 10, paddingTop: 10, paddingBottom: 10 }}>
+  //       <View style={{ width: '30%' }}>
+  //         <Text>{movie.item.releaseYear}</Text>
+  //       </View>
+  //       <View style={{ width: '70%' }}>
+  //         <Text>{movie.item.title}</Text>
+  //       </View>
+  //     </View>
+  //   )
+  // }
 
-  renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: Metrics.horizontalLineHeight,
-          width: "86%",
-          backgroundColor: Colors.blueSky,
-          marginLeft: "14%"
-        }}
-      />
-    );
-  }
+  // renderSeparator = () => {
+  //   return (
+  //     <View
+  //       style={{
+  //         height: Metrics.horizontalLineHeight,
+  //         width: "86%",
+  //         backgroundColor: Colors.blueSky,
+  //         marginLeft: "14%"
+  //       }}
+  //     />
+  //   );
+  // }
 
-  renderHeader = () => {
-    return (
-      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingLeft: 10, paddingTop: 10, paddingBottom: 10, backgroundColor: Colors.blueSky, }}>
-        <View style={{ width: '30%' }}>
-          <Text style = {{color: Colors.white, fontSize: 14}}>{`Release Year`}</Text>
-        </View>
-        <View style={{ width: '70%' }}>
-        <Text style = {{color: Colors.white, fontSize: 14}}>{'Title'}</Text>
-        </View>
-      </View>
-    )
-  };
+  // renderHeader = () => {
+  //   return (
+  //     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingLeft: 10, paddingTop: 10, paddingBottom: 10, backgroundColor: Colors.blueSky, }}>
+  //       <View style={{ width: '30%' }}>
+  //         <Text style = {{color: Colors.white, fontSize: 14}}>{`Release Year`}</Text>
+  //       </View>
+  //       <View style={{ width: '70%' }}>
+  //       <Text style = {{color: Colors.white, fontSize: 14}}>{'Title'}</Text>
+  //       </View>
+  //     </View>
+  //   )
+  // };
 
 
 }
