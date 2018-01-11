@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -13,19 +13,12 @@ import LoginActions from '../Redux/LoginRedux';
 
 class DrawerContainer extends Component {
 
-  // logOut = () => {
-  //   // This will reset back to loginStack
-  //   // https://github.com/react-community/react-navigation/issues/1127
-  //   const actionToDispatch = NavigationActions.reset({
-  //     index: 0,
-  //     key: null,  // black magic
-  //     actions: [NavigationActions.navigate({ routeName: ScreenKey.LOGIN_SCREEN })]
-  //   })
-  //   this.props.navigation.dispatch(actionToDispatch)
-  // }
-
   render() {
-    const { navigation: { navigate }, logout } = this.props
+    const { navigation: { navigate }, logout, activeItemKey } = this.props;
+
+    console.log('====================================');
+    console.log('DrawerContainer this.props: ', this.props);
+    console.log('====================================');
     return (
       <View style={styles.container}>
 
@@ -41,34 +34,34 @@ class DrawerContainer extends Component {
           <Button onPress={() => navigate(ScreenKey.HOME_SCREEN)}
             labelWrapper={styles.labelButtonWrapper}
             label={I18n.t('home')}
-            buttonStyle={[styles.buttonWrapper, {backgroundColor: Colors.blueSky, borderRadius: 0}]}
-            labelText={[{color: Colors.white}]}
+            buttonStyle={[styles.buttonWrapper, this.changeforegroundRowFocusStyle(activeItemKey, ScreenKey.HOME_SCREEN)]}
+            labelText={[this.changeForegroundTextStyle(activeItemKey, ScreenKey.HOME_SCREEN)]}
             iconWrapper={styles.iconWrapper}
             iconType={'Entypo'}
             name={'home'}
-            iconColor={Colors.white}
+            iconColor={this.changeForegroundIconStyle(activeItemKey, ScreenKey.HOME_SCREEN)}
           />
 
           <Button onPress={() => navigate(ScreenKey.A_STACK)}
             labelWrapper={styles.labelButtonWrapper}
             label={I18n.t('aScreen')}
-            buttonStyle={[styles.buttonWrapper]}
-            labelText={styles.labelButtonText}
+            buttonStyle={[styles.buttonWrapper, this.changeforegroundRowFocusStyle(activeItemKey, ScreenKey.A_STACK)]}
+            labelText={[this.changeForegroundTextStyle(activeItemKey, ScreenKey.A_STACK)]}
             iconWrapper={styles.iconWrapper}
             iconType={'MaterialCommunityIcons'}
             name={'projector-screen'}
-            iconColor={Colors.black}
+            iconColor={this.changeForegroundIconStyle(activeItemKey, ScreenKey.A_STACK)}
           />
 
           <Button onPress={() => navigate(ScreenKey.B_SCREEN)}
             labelWrapper={styles.labelButtonWrapper}
             label={I18n.t('bScreen')}
-            buttonStyle={[styles.buttonWrapper]}
-            labelText={styles.labelButtonText}
+            buttonStyle={[styles.buttonWrapper, this.changeforegroundRowFocusStyle(activeItemKey, ScreenKey.B_SCREEN)]}
+            labelText={[this.changeForegroundTextStyle(activeItemKey, ScreenKey.B_SCREEN)]}
             iconWrapper={styles.iconWrapper}
             iconType={'MaterialCommunityIcons'}
             name={'fullscreen-exit'}
-            iconColor={Colors.black}
+            iconColor={this.changeForegroundIconStyle(activeItemKey, ScreenKey.B_SCREEN)}
           />
 
           <Button onPress={logout}
@@ -84,6 +77,43 @@ class DrawerContainer extends Component {
         </ScrollView>
       </View>
     )
+  }
+
+  changeforegroundRowFocusStyle = (activeItemKey, screen) => {
+
+    try {
+      if (activeItemKey === screen) {
+        return styles.foregroundRowFocus;
+      }
+      return {};
+    } catch (error) {
+      console.log('changeforegroundRowFocusStyle error: ', error);
+      return {};
+    }
+  }
+
+  changeForegroundTextStyle = (activeItemKey, screen) => {
+    try {
+      if (activeItemKey === screen) {
+        return styles.textRowFocus;
+      }
+      return { color: Colors.black };
+    } catch (error) {
+      console.log('changeForegroundTextStyle error: ', error);
+      return { color: Colors.black };
+    }
+  }
+
+  changeForegroundIconStyle = (activeItemKey, screen) => {
+    try {
+      if (activeItemKey === screen) {
+        return Colors.white;
+      }
+      return Colors.black;
+    } catch (error) {
+      console.log('changeForegroundTextStyle error: ', error);
+      return Colors.black;
+    }
   }
 }
 
@@ -147,6 +177,13 @@ const styles = StyleSheet.create({
     flex: 0.8,
     alignItems: 'flex-start',
     // backgroundColor: 'blue',
-
+  },
+  foregroundRowFocus: {
+    backgroundColor: Colors.blueSky,
+    borderRadius: 0
+  },
+  textRowFocus: {
+    color: Colors.white
   }
+
 })

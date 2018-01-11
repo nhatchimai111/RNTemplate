@@ -4,12 +4,7 @@ import AppStateActions from '../Redux/AppStateRedux';
 import LoginActions, { isLoggedIn } from '../Redux/LoginRedux';
 import MovieActions from '../Redux/MoviesRedux';
 
-export const selectLoggedInStatus = (state) => {
-  console.log('====================================');
-  console.log('selectLoggedInStatus state: ', state);
-  console.log('====================================');
-  return isLoggedIn(state.login);
-}
+export const selectLoggedInStatus = (state) => isLoggedIn(state.login);
 
 // process STARTUP actions
 export function* startup(action) {

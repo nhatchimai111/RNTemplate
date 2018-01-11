@@ -4,9 +4,9 @@ import MovieActions from '../Redux/MoviesRedux';
 export function * getMovies (api, action) {
   let response = yield call(api.getMovies)
 
-  console.log('====================================');
-  console.log('MovieSages getMovies response: ', response);
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log('MovieSages getMovies response: ', response);
+  // console.log('====================================');
   if (response.ok) {
     yield put(MovieActions.getMoviesSuccess(response.data.movies));
   }else{
