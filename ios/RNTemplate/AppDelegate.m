@@ -11,6 +11,8 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RCTSplashScreen.h" //import interface
+
 
 @implementation AppDelegate
 
@@ -24,6 +26,9 @@
                                                       moduleName:@"RNTemplate"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+  //[RCTSplashScreen open:rootView];
+  [RCTSplashScreen open:rootView withImageNamed:@"splash"]; // activate splashscreen, imagename from LaunchScreen.xib
+  
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

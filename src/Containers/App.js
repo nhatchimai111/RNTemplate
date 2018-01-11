@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import SplashScreen from 'react-native-smart-splash-screen';
 
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
@@ -21,7 +22,16 @@ const store = createStore()
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
-  render () {
+
+  componentDidMount() {
+    SplashScreen.close({
+      animationType: SplashScreen.animationType.scale,
+      duration: 850,
+      delay: 500
+    })
+  }
+
+  render() {
     return (
       <Provider store={store}>
         <RootContainer />
