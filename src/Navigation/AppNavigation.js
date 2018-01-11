@@ -38,18 +38,18 @@ const DrawerNav = DrawerNavigator({
   contentComponent: DrawerContainer
   });
 
-const LoginStack = StackNavigator({
-  [ScreenKey.LOGIN_SCREEN]: { screen: LoginScreen },
-  [ScreenKey.SIGNUP_SCREEN]: { screen: SignupScreen },
-  [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
-}, {
-    headerMode: 'none',
-    // initialRouteName: 'Login',
-    //   cardStyle: styles.card,
-    // transitionConfig: getSlideFromRightTransition,
-    // mode: 'modal'
-  }
-)
+// const LoginStack = StackNavigator({
+//   [ScreenKey.LOGIN_SCREEN]: { screen: LoginScreen },
+//   [ScreenKey.SIGNUP_SCREEN]: { screen: SignupScreen },
+//   [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
+// }, {
+//     headerMode: 'none',
+//     // initialRouteName: 'Login',
+//     //   cardStyle: styles.card,
+//     // transitionConfig: getSlideFromRightTransition,
+//     // mode: 'modal'
+//   }
+// )
 
 const MainNav = StackNavigator({
   // [ScreenKey.LOGIN_STACK] : { screen: LoginStack },

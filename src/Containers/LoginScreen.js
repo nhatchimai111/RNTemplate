@@ -91,19 +91,10 @@ class LoginScreen extends Component {
   }
 
   onPressLogin = () => {
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV })
-    //   ]
-    // })
-    // this.props.navigation.dispatch(resetAction)
 
     const { userName, passWord } = this.state
     // attempt a login - a saga is listening to pick it up from here.
     this.props.login(userName, passWord)
-
-    // this.props.navigation.navigate('BScreen')
   }
 }
 
