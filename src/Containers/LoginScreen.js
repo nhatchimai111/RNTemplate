@@ -34,7 +34,7 @@ class LoginScreen extends Component {
     return (
       <View style={styles.container}>
 
-        <NavBar title={I18n.t('logIn')}
+        <NavBar title={I18n.t('logInScreen')}
           isHideLeftButton
           isHideRightButton
         />

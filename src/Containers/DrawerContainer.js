@@ -25,7 +25,7 @@ class DrawerContainer extends Component {
   // }
 
   render() {
-    const { navigation: { navigate } } = this.props
+    const { navigation: { navigate }, logout } = this.props
     return (
       <View style={styles.container}>
 
@@ -71,7 +71,7 @@ class DrawerContainer extends Component {
             iconColor={Colors.black}
           />
 
-          <Button onPress={() => navigate(() => this.props.logout())}
+          <Button onPress={logout}
             labelWrapper={styles.labelButtonWrapper}
             label={I18n.t('logout')}
             buttonStyle={[styles.buttonWrapper]}

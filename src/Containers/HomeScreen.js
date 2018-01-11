@@ -38,7 +38,7 @@ class HomeScreen extends Component {
     return (
       <View style={styles.container}>
 
-        <NavBar title={I18n.t('home')}
+        <NavBar title={I18n.t('homeScreen')}
           isHideRightButton
           onPressLeftButton={() => this.props.navigation.navigate(ScreenKey.DRAWER_TOGGLE)}
         />

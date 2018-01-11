@@ -34,6 +34,11 @@ const LOGGED_IN_STATE = getStateForAction(reset({
 
 export function reducer(state = INITIAL_STATE, action) {
   let nextState
+
+  console.log('====================================');
+  console.log('NavigationRedux action.type: ', action.type);
+  console.log('NavigationRedux LoginTypes: ', LoginTypes);
+  console.log('====================================');
   switch (action.type) {
     case AppStateTypes.SET_REHYDRATION_COMPLETE:
       return NOT_LOGGED_IN_STATE

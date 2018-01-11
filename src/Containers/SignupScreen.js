@@ -22,21 +22,17 @@ class SignupScreen extends Component {
   }
 
   render() {
-    // return (
-    //   <View>
-    //     <Text>{'Signup Screen'}</Text>
-    //     <TouchableOpacity onPress={this.onPressSignup}>
-    //       <Text>{'Go to Home Screen'}</Text>
-    //     </TouchableOpacity>
-    //   </View>
-    // );
+
+    const { navigation } = this.props;
 
     return (
       <View style={styles.container}>
 
-        <NavBar title={I18n.t('signUp')}
-          isHideLeftButton
+        <NavBar title={I18n.t('signUpScreen')}
           isHideRightButton
+          onPressLeftButton={() => navigation.goBack()}
+          iconTypeLeft={'Ionicons'}
+          nameIconLeft={'ios-arrow-back'}
         />
 
         <View style={[styles.body]}>
@@ -49,13 +45,6 @@ class SignupScreen extends Component {
             isHideIcon
           />
 
-          {/* <Button onPress={() => this.props.navigation.navigate(ScreenKey.SIGNUP_SCREEN)}
-            labelWrapper={styles.loginLabelWrapper}
-            label={I18n.t('signUp')}
-            buttonStyle={[styles.button]}
-            labelStyle={styles.titleText}
-            isHideIcon
-          /> */}
         </View>
       </View>
     );

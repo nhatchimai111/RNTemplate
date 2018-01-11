@@ -1,7 +1,10 @@
 {
-  "logIn": "Login Screen",
-  "signUp": "SignUp Screen",
-  "home": "Home Screen",
+  "logInScreen": "Login Screen",
+  "logIn": "Login",
+  "signUpScreen": "SignUp Screen",
+  "signUp": "SignUp",
+  "homeScreen": "Home Screen",
+  "home": "Home",
   "aScreen": "A Screen",
   "aDetailScreen": "A Detail Screen",
   "bScreen": "B Screen",
@@ -9,5 +12,5 @@
   "releaseYear": "Release Year",
   "title": "Title",
   "userName": "User Name",
-  "passWord": "Password"
+  "passWord": "Password",
 }

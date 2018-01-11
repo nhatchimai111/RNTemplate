@@ -36,7 +36,7 @@ class ADetailScreen extends Component {
     return (
       <View style={styles.container}>
 
-        <NavBar title={I18n.t('bScreen')}
+        <NavBar title={I18n.t('aDetailScreen')}
           isHideRightButton
           onPressLeftButton={() => navigation.goBack()}
           iconTypeLeft={'Ionicons'}
