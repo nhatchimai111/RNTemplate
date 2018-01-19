@@ -46,6 +46,9 @@
 ```
 
 ## :arrow_forward: How to show log
+[Install Reactotron](https://github.com/infinitered/reactotron/blob/master/docs/installing.md)
+
+
 ***Simple log***
 ```
 console.tron.log(<string>)
