@@ -1,3 +1,4 @@
+// Libraries
 import React, { PureComponent } from 'react';
 import {
   View,
@@ -5,8 +6,11 @@ import {
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import { Colors } from '../../Themes';
 import I18n from '../../I18n';
+
+//Components
 
 export default class HeaderMovies extends PureComponent {
 

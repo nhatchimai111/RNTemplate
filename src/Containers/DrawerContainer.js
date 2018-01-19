@@ -1,30 +1,41 @@
-import React, { Component } from 'react'
+// Libraries
+import React, { PureComponent } from 'react'
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
+// Utilities
 import I18n from '../I18n';
 import { ScreenKey } from '../Constants';
 import { Images, Colors, Metrics } from '../Themes';
 
+//Components
 import Button from '../Components/Common/Button';
 
+// Reduxes
 import LoginActions from '../Redux/LoginRedux';
 
-class DrawerContainer extends Component {
+class DrawerContainer extends PureComponent {
 
   render() {
     const { navigation: { navigate }, logout, activeItemKey } = this.props;
 
-    console.log('====================================');
-    console.log('DrawerContainer this.props: ', this.props);
-    console.log('====================================');
+    console.tron.log('I am important')
+    
+    console.tron.display({
+      name: 'this.props',
+      value: this.props,
+      preview: 'when you click here, it might show this.props',
+      important: true,
+      // image: 'http://placekitten.com/g/400/400'
+    })
+
     return (
       <View style={styles.container}>
 
         <View style={styles.header}>
           <View style={styles.avatarWrapper}>
-            <Image source={require('../Images/android.png')} resizeMode={Image.resizeMode.contain}
+            <Image source={Images.android} resizeMode={Image.resizeMode.contain}
               style={styles.avatarImage} />
           </View>
         </View>

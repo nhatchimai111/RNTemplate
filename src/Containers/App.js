@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SplashScreen from 'react-native-smart-splash-screen';
+import { Provider } from 'react-redux';
 
+// Configs
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-import { Provider } from 'react-redux';
+
+// Containers
 import RootContainer from './RootContainer';
+
+// Store
 import createStore from '../Redux';
 
 EStyleSheet.build();
@@ -21,7 +27,7 @@ const store = createStore()
  *
  * We separate like this to play nice with React Native's hot reloading.
  */
-class App extends Component {
+class App extends PureComponent {
 
   componentDidMount() {
     SplashScreen.close({

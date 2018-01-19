@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -10,16 +11,19 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import { ScreenKey } from '../Constants';
 import { Colors, Metrics } from '../Themes';
 import I18n from '../I18n';
 
+//Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
+// Reduxes
 import LoginActions from '../Redux/LoginRedux';
 
-class LoginScreen extends Component {
+class LoginScreen extends PureComponent {
 
   constructor(props) {
     super(props);

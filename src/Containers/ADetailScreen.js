@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import {
   View, 
   Text,
@@ -7,29 +8,22 @@ import {
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import {ScreenKey} from '../Constants';
 import { Colors } from '../Themes';
 import I18n from '../I18n';
 
+//Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
-class ADetailScreen extends Component {
+class ADetailScreen extends PureComponent {
 
   constructor(props) {
     super(props);
   }
 
   render() {
-    // return (
-    //   <View>
-    //     <Text>{'A Detail Screen'}</Text>
-        
-    //     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-    //       <Text>{'Back'}</Text>
-    //     </TouchableOpacity>
-    //   </View>
-    // );
 
     const {navigation} = this.props;
 
@@ -45,13 +39,6 @@ class ADetailScreen extends Component {
 
         <View style={[styles.body]}>
 
-          {/* <Button onPress={() => navigate(ScreenKey.HOME_SCREEN)}
-            labelWrapper={styles.loginLabelWrapper}
-            label={I18n.t('home')}
-            buttonStyle={[styles.button]}
-            labelStyle={styles.titleText}
-            isHideIcon
-          /> */}
         </View>
       </View>
     );
@@ -77,24 +64,5 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  loginLabelWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'blue',
-    // paddingLeft: 10,
-    // paddingRight: 20,
-  },
-  loginIconWrapper: {
-    backgroundColor: 'green',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingLeft: 10
-  },
-  button:{
-    width: 150, 
-    height: 50, 
-    backgroundColor: Colors.blueSky, 
-    margin: 10
   }
 });

@@ -1,24 +1,36 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput,
+  Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import { ScreenKey } from '../Constants';
-import { Colors } from '../Themes';
+import { Colors, Metrics } from '../Themes';
 import I18n from '../I18n';
 
+// Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
-class SignupScreen extends Component {
+// Reduxes
+import LoginActions from '../Redux/LoginRedux';
+
+class SignupScreen extends PureComponent {
 
   constructor(props) {
     super(props);
+    this.state = {
+      userName: "",
+      passWord: ""
+    }
   }
 
   render() {
@@ -34,6 +46,35 @@ class SignupScreen extends Component {
           iconTypeLeft={'Ionicons'}
           nameIconLeft={'ios-arrow-back'}
         />
+
+        <View style={[styles.inputInfoWrapper]}>
+          <TextInput
+            ref={(email) => (this.inputEmail = email)}
+            style={{ color: Colors.black, marginBottom: Platform.OS === 'ios' ? 20 : 0 }}
+            placeholder={I18n.t('userName').toUpperCase()}
+            keyboardType={'email-address'}
+            returnKeyType={'next'}
+            autoCapitalize={'none'}
+            underlineColorAndroid={'transparent'}
+            onSubmitEditing={() => this.inputPassword.focus()}
+            value={this.state.userName}
+            onChangeText={text => this.setState({ userName: text })}
+          />
+
+          <TextInput
+            ref={(password) => (this.inputPassword = password)}
+            style={{ color: Colors.black }}
+            placeholder={I18n.t('passWord').toUpperCase()}
+            secureTextEntry={true}
+            autoCapitalize={'none'}
+            returnKeyType={'done'}
+            underlineColorAndroid={'transparent'}
+            onSubmitEditing={() => this.onPressLogin()}
+            value={this.state.passWord}
+            onChangeText={text => this.setState({ passWord: text })}
+          />
+
+        </View>
 
         <View style={[styles.body]}>
 
@@ -52,25 +93,26 @@ class SignupScreen extends Component {
   }
 
   onPressSignup = () => {
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: ScreenKey.DRAWER_NAV })
-      ]
-    })
-    this.props.navigation.dispatch(resetAction)
+    
 
-    // this.props.navigation.navigate('BScreen')
+    const { userName, passWord } = this.state
+    // attempt a login - a saga is listening to pick it up from here.
+    this.props.login(userName, passWord)
   }
 
 }
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching
+  }
+}
 
-const mapDispatchToProps = (dispatch) => ({
-
-})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userName, passWord) => dispatch(LoginActions.loginRequest(userName, passWord))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
 
@@ -87,10 +129,7 @@ const styles = EStyleSheet.create({
   },
   loginLabelWrapper: {
     justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'blue',
-    // paddingLeft: 10,
-    // paddingRight: 20,
+    alignItems: 'center'
   },
   loginIconWrapper: {
     backgroundColor: 'green',
@@ -103,5 +142,25 @@ const styles = EStyleSheet.create({
     height: 50,
     backgroundColor: Colors.blueSky,
     margin: 10
+  },
+  loginLabelWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loginIconWrapper: {
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingLeft: 10
+  },
+  button: {
+    width: 150,
+    height: 50,
+    backgroundColor: Colors.blueSky,
+    margin: 10
+  },
+  inputInfoWrapper: {
+    height: Metrics.screenHeight / 3,
+    width: Metrics.screenWidth - 40,
   }
 });

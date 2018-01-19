@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { SafeAreaView } from 'react-navigation';
 
-import StartupActions from '../Redux/StartupRedux';
-// import NotificationActions from '../Redux/NotificationRedux'
-import ReduxPersist from '../Config/ReduxPersist'
-// import NotificationsBar from '../Components/NotificationsBar'
-// import styles from './Styles/RootContainerStyles'
-
-import ReduxNavigation from '../Navigation/ReduxNavigation';
-
+// Utilities
 import { Colors } from '../Themes';
+
+// Components
 import StatusBar from '../Components/Common/StatusBar';
 
-class RootContainer extends Component {
+//Reduxes
+import StartupActions from '../Redux/StartupRedux';
+
+// Persist
+import ReduxPersist from '../Config/ReduxPersist';
+
+// Navigation
+import ReduxNavigation from '../Navigation/ReduxNavigation';
+
+class RootContainer extends PureComponent {
   componentDidMount() {
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
@@ -38,13 +43,11 @@ class RootContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  // notifications: state.notifications.notifications
 })
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup()),
-  // clearNotifications: () => dispatch(NotificationActions.clearNotifications())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);

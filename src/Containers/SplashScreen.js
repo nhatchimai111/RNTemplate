@@ -1,3 +1,4 @@
+// Libraries
 import React, { Component } from 'react';
 import {
   View,
@@ -6,12 +7,10 @@ import {
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import { ScreenKey } from '../Constants';
-import { Colors, Metrics } from '../Themes';
+import { Colors, Metrics, Images } from '../Themes';
 import I18n from '../I18n';
-
-import NavBar from '../Components/Common/NavBar';
-import Button from '../Components/Common/Button';
 
 class SplashScreen extends Component {
 
@@ -25,7 +24,7 @@ class SplashScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Image source={require('../Images/splash.png')}
+        <Image source={Images.splash}
           style={styles.backgroundImage} />
       </View>
     );
@@ -51,7 +50,6 @@ const styles = EStyleSheet.create({
     // flex: 1,
     top: 0,
     left: 0,
-    // resizeMode: 'repeat'
     width: Metrics.screenWidth,
     height: Metrics.screenHeight,
   }

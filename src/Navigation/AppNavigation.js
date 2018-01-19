@@ -1,7 +1,7 @@
 import { StackNavigator, TabNavigator, TabBarBottom, DrawerNavigator } from 'react-navigation';
 
 import getSlideFromRightTransition from './SlideFromRightTransition';
-import {ScreenKey} from '../Constants';
+import { ScreenKey } from '../Constants';
 
 import SplashScreen from '../Containers/SplashScreen';
 import SignupScreen from '../Containers/SignupScreen';
@@ -35,21 +35,8 @@ const DrawerNav = DrawerNavigator({
     screen: BScreen,
   },
 }, {
-  contentComponent: DrawerContainer
+    contentComponent: DrawerContainer
   });
-
-// const LoginStack = StackNavigator({
-//   [ScreenKey.LOGIN_SCREEN]: { screen: LoginScreen },
-//   [ScreenKey.SIGNUP_SCREEN]: { screen: SignupScreen },
-//   [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
-// }, {
-//     headerMode: 'none',
-//     // initialRouteName: 'Login',
-//     //   cardStyle: styles.card,
-//     // transitionConfig: getSlideFromRightTransition,
-//     // mode: 'modal'
-//   }
-// )
 
 const MainNav = StackNavigator({
   // [ScreenKey.LOGIN_STACK] : { screen: LoginStack },
@@ -57,13 +44,12 @@ const MainNav = StackNavigator({
   [ScreenKey.DRAWER_NAV]: { screen: DrawerNav },
   [ScreenKey.LOGIN_SCREEN]: { screen: LoginScreen },
   [ScreenKey.SIGNUP_SCREEN]: { screen: SignupScreen },
-  
+
 }, {
     headerMode: 'none',
-    // initialRouteName: ScreenKey.LOGIN_STACK,
     // initialRouteName: ScreenKey.SPLASH_SCREEN,
     //   cardStyle: styles.card,
-    transitionConfig: getSlideFromRightTransition,
+    transitionConfig: getSlideFromRightTransition, // custom transition animation
     // mode: 'modal'
   }
 )

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import {
   View, 
   Text,
@@ -7,14 +8,16 @@ import {
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import {ScreenKey} from '../Constants';
 import { Colors } from '../Themes';
 import I18n from '../I18n';
 
+//Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
-class AScreen extends Component {
+class AScreen extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -80,8 +83,6 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'blue',
-    // paddingLeft: 10,
-    // paddingRight: 20,
   },
   loginIconWrapper: {
     backgroundColor: 'green',

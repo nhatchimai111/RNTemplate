@@ -1,19 +1,20 @@
+// Libraries
 import React, { PureComponent } from 'react';
 import { Platform, View, TouchableOpacity, Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import PropTypes from 'prop-types';
 
+// Utilities
 import { Colors, Metrics } from '../../Themes';
+
+//Components
 
 export default class Icon extends PureComponent {
 
   render() {
-
-    // console.log('====================================');
-    // console.log('Icon this.props: ', this.props);
-    // console.log('====================================');
 
     const { isHideIcon } = this.props;
 
@@ -26,15 +27,8 @@ export default class Icon extends PureComponent {
 
   renderIcon({ name, size, color, iconType }) {
 
-    // console.log('====================================');
-    // console.log('Icon name: ', name);
-    // console.log('Icon size: ', size);
-    // console.log('Icon color: ', color);
-    // console.log('Icon iconType: ', iconType);
-    // console.log('====================================');
     let MaterialCommunityIconsView = null;
 
-    // const { iconType } = props;
     switch (iconType) {
       case 'MaterialCommunityIcons':
         MaterialCommunityIconsView = (<MaterialCommunityIcons name={name} size={size} color={color} />);
@@ -57,14 +51,20 @@ export default class Icon extends PureComponent {
 }
 
 Icon.defaultProps = {
-  onPress: () => { },
-  label: "",
   isHideIcon: false,
   iconType: null,
   color: Colors.white,
   name: "menu",
   size: 30
 };
+
+Icon.propTypes = {
+  isHideIcon: PropTypes.bool,
+  iconType: PropTypes.string,
+  color: PropTypes.string,
+  name: PropTypes.string,
+  size: PropTypes.number
+}
 
 const styles = EStyleSheet.create({
   container: {

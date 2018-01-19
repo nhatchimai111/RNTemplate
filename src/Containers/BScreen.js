@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import {
   View, 
   Text,
@@ -7,31 +8,22 @@ import {
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+// Utilities
 import {ScreenKey} from '../Constants';
 import { Colors } from '../Themes';
 import I18n from '../I18n';
 
+//Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
-class BScreen extends Component {
+class BScreen extends PureComponent {
 
   constructor(props) {
     super(props);
   }
 
   render() {
-    // return (
-    //   <View>
-    //     <Text>{'B Screen'}</Text>
-    //     <TouchableOpacity onPress={() => this.props.navigation.navigate(ScreenKey.HOME_SCREEN)}>
-    //       <Text>{'Go to Home Screen'}</Text>
-    //     </TouchableOpacity>
-    //     <TouchableOpacity onPress={() => this.props.navigation.navigate(ScreenKey.DRAWER_TOGGLE)}>
-    //       <Text>{'DrawerToggle'}</Text>
-    //     </TouchableOpacity>
-    //   </View>
-    // );
 
     const {navigate} = this.props.navigation;
 
@@ -80,10 +72,7 @@ const styles = EStyleSheet.create({
   },
   loginLabelWrapper: {
     justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'blue',
-    // paddingLeft: 10,
-    // paddingRight: 20,
+    alignItems: 'center'
   },
   loginIconWrapper: {
     backgroundColor: 'green',

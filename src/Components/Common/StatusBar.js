@@ -1,17 +1,19 @@
-import React from 'react';
+// Libraries
+import React, { PureComponent } from 'react';
 import { Platform, StyleSheet, StatusBar, Image, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import PropTypes from 'prop-types';
 
+// Utilities
 import { Colors, Metrics, Fonts } from '../../Themes';
 import { CommonUtils } from '../../Utils';
 
-export default class StatusBarLight extends React.Component {
+//Components
+
+export default class StatusBarLight extends PureComponent {
 
   render() {
-    // console.log('====================================');
-    // console.log(`Width: , ${Metrics.screenWidth} - Height: ${Metrics.screenHeight}`);
-    // console.log('====================================');
-    
+
     return (Platform.OS === 'android' && Platform.Version >= 21 && this.props.custom ?
       (
         <Image style={styles.statusBarBG} source={this.props.source}>
@@ -35,9 +37,14 @@ export default class StatusBarLight extends React.Component {
     )
   }
 }
+
 StatusBarLight.defaultProps = {
   custom: false
 };
+
+StatusBarLight.propsType = {
+  custom: PropTypes.bool
+}
 
 const styles = StyleSheet.create({
   statusBarBG: {

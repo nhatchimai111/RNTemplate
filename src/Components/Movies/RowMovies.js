@@ -1,10 +1,16 @@
+// Libraries
 import React, { PureComponent } from 'react';
 import {
   View,
   Text,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import PropTypes from 'prop-types';
+
+// Utilities
 import { Colors } from '../../Themes';
+
+//Components
 
 export default class RowMovies extends PureComponent {
 
@@ -13,9 +19,6 @@ export default class RowMovies extends PureComponent {
   }
 
   render() {
-    // console.log('====================================');
-    // console.log('RowMovies render this.props: ', this.props);
-    // console.log('====================================');
     const { movie } = this.props;
 
     return !movie ? null :
@@ -34,6 +37,10 @@ export default class RowMovies extends PureComponent {
 
 RowMovies.defaultProps = {
   movie: null
+}
+
+RowMovies.propTypes = {
+  movie: PropTypes.object
 }
 
 const styles = EStyleSheet.create({
