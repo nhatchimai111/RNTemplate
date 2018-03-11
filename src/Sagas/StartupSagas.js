@@ -1,18 +1,23 @@
 import { put, select } from 'redux-saga/effects';
 
 import AppStateActions from '../Redux/AppStateRedux';
-import LoginActions, { isLoggedIn } from '../Redux/LoginRedux';
+import ActhenticateActions, { isAuthenticate } from '../Redux/AuthenticateRedux';
 import MovieActions from '../Redux/MoviesRedux';
+import { CommonUtils } from '../Utils/';
 
-export const selectLoggedInStatus = (state) => isLoggedIn(state.login);
+export const selectAithenticateStatus = (state) => {
+  CommonUtils.log('StartupSagas selectLoggedInStatus state: ', state);
+  return isAuthenticate(state.authenticate)
+};
 
 // process STARTUP actions
 export function* startup(action) {
 
   // only get if we don't have it yet
   yield put(AppStateActions.setRehydrationComplete());
-  const isLoggedIn = yield select(selectLoggedInStatus);
-  if (isLoggedIn) {
-    yield put(LoginActions.autoLogin());
+
+  const isAuthenticate = yield select(selectAithenticateStatus);
+  if (isAuthenticate) {
+    yield put(ActhenticateActions.autoAuthenticate());
   }
 }

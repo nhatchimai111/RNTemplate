@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import I18n from '../I18n';
 import { ScreenKey } from '../Constants';
 import { Images, Colors, Metrics } from '../Themes';
+import { CommonUtils } from '../Utils';
 
 //Components
 import Button from '../Components/Common/Button';
@@ -19,16 +20,6 @@ class DrawerContainer extends PureComponent {
 
   render() {
     const { navigation: { navigate }, logout, activeItemKey } = this.props;
-
-    console.tron.log('I am important')
-    
-    console.tron.display({
-      name: 'this.props',
-      value: this.props,
-      preview: 'when you click here, it might show this.props',
-      important: true,
-      // image: 'http://placekitten.com/g/400/400'
-    })
 
     return (
       <View style={styles.container}>
@@ -129,8 +120,10 @@ class DrawerContainer extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+
+  // CommonUtils.log('DrawerContainer mapStateToProps state: ', state)
   return {
-    fetching: state.login.fetching
+    fetching: state.authenticate.fetching
   }
 }
 

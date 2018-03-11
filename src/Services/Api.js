@@ -1,5 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce';
+import FixtureApi from './FixtureApi';
 
 // our "constructor"
 const create = (baseURL = 'https://facebook.github.io/') => {
@@ -35,6 +36,8 @@ const create = (baseURL = 'https://facebook.github.io/') => {
   // way at this level.
   //
   const getMovies = () => api.get('react-native/movies.json')
+  const signup = (user) => FixtureApi.signup(user)
+  const login = (user) => FixtureApi.login(user)
 
   // ------
   // STEP 3
@@ -51,6 +54,8 @@ const create = (baseURL = 'https://facebook.github.io/') => {
   return {
     // a list of the API functions from step 2
     getMovies,
+    signup,
+    login
   }
 }
 

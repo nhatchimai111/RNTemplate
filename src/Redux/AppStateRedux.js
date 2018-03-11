@@ -1,6 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
+import { CommoUtils } from '../Utils';
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -19,8 +21,7 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // rehydration is complete
-export const setRehydrationComplete = (state: Object) =>
-  state.merge({ rehydrationComplete: true })
+export const setRehydrationComplete = (state: Object) => state.merge({ rehydrationComplete: true })
 
 /* ------------- Hookup Reducers To Types ------------- */
 

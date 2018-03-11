@@ -35,7 +35,7 @@ const DrawerNav = DrawerNavigator({
     screen: BScreen,
   },
 }, {
-    contentComponent: DrawerContainer
+    contentComponent: DrawerContainer // custom drawer
   });
 
 const MainNav = StackNavigator({

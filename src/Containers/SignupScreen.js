@@ -21,7 +21,9 @@ import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
 // Reduxes
-import LoginActions from '../Redux/LoginRedux';
+// import LoginActions from '../Redux/LoginRedux';
+// import SignupActions from '../Redux/SignupRedux';
+import AuthenticateActions from '../Redux/AuthenticateRedux';
 
 class SignupScreen extends PureComponent {
 
@@ -29,7 +31,8 @@ class SignupScreen extends PureComponent {
     super(props);
     this.state = {
       userName: "",
-      passWord: ""
+      passWord: "",
+      email: ""
     }
   }
 
@@ -69,9 +72,21 @@ class SignupScreen extends PureComponent {
             autoCapitalize={'none'}
             returnKeyType={'done'}
             underlineColorAndroid={'transparent'}
-            onSubmitEditing={() => this.onPressLogin()}
+            onSubmitEditing={() => this.inputEmail.focus()}
             value={this.state.passWord}
             onChangeText={text => this.setState({ passWord: text })}
+          />
+
+          <TextInput
+            ref={(password) => (this.inputEmail = password)}
+            style={{ color: Colors.black }}
+            placeholder={I18n.t('email').toUpperCase()}
+            autoCapitalize={'none'}
+            returnKeyType={'done'}
+            underlineColorAndroid={'transparent'}
+            onSubmitEditing={() => this.onPressSignup()}
+            value={this.state.email}
+            onChangeText={text => this.setState({ email: text })}
           />
 
         </View>
@@ -93,24 +108,30 @@ class SignupScreen extends PureComponent {
   }
 
   onPressSignup = () => {
-    
 
-    const { userName, passWord } = this.state
+    const { userName, passWord, email } = this.state;
+    const { authenticate } = this.props;
     // attempt a login - a saga is listening to pick it up from here.
-    this.props.login(userName, passWord)
+    const user = { userName, passWord, email };
+    const isSignup = true;
+    const isLogin = false;
+    const param = { isSignup, isLogin, user };
+
+    // CommonUtils.log("Login Screen onPressLogin authentication: ", authentication)
+    authenticate(param);
   }
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching
+    fetching: state.authenticate.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (userName, passWord) => dispatch(LoginActions.loginRequest(userName, passWord))
+    authenticate: (param) => dispatch(AuthenticateActions.authenticateRequest(param))
   }
 }
 

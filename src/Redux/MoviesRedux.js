@@ -15,7 +15,9 @@ export default Creators
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
     // data: require('../Fixtures/movies.json')
-    data: {}
+    data: {},
+    loading: false,
+    movies: []
 })
 
 /* ------------- Reducers ------------- */

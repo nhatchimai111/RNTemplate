@@ -4,8 +4,11 @@ import MainNav from '../Navigation/AppNavigation';
 import { ScreenKey } from '../Constants';
 
 import { AppStateTypes } from '../Redux/AppStateRedux';
-import { LoginTypes } from '../Redux/LoginRedux';
+// import { LoginTypes } from '../Redux/LoginRedux';
+// import { SignupTypes } from '../Redux/SignupRedux';
+import { AuthenticateTypes } from '../Redux/AuthenticateRedux';
 
+import { CommonUtils } from '../Utils'
 
 const { navigate, reset } = NavigationActions;
 const { getStateForAction } = MainNav.router;
@@ -13,13 +16,13 @@ const { getStateForAction } = MainNav.router;
 const INITIAL_STATE = getStateForAction(
   navigate({ routeName: ScreenKey.SPLASH_SCREEN })
 )
-const NOT_LOGGED_IN_STATE = getStateForAction(reset({
+const NOT_AUTHENTICATE_STATE = getStateForAction(reset({
   index: 0,
   actions: [
     navigate({ routeName: ScreenKey.LOGIN_SCREEN })
   ]
 }))
-const LOGGED_IN_STATE = getStateForAction(reset({
+const AUTHENTICATE_STATE = getStateForAction(reset({
   index: 0,
   actions: [
     navigate({ routeName: ScreenKey.DRAWER_NAV })
@@ -33,23 +36,41 @@ const LOGGED_IN_STATE = getStateForAction(reset({
 // const navigateTo = routeName => () => navigate({ routeName })
 
 export function reducer(state = INITIAL_STATE, action) {
-  let nextState
 
-  // console.log('====================================');
-  // console.log('NavigationRedux action.type: ', action.type);
-  // console.log('NavigationRedux LoginTypes: ', LoginTypes);
-  // console.log('====================================');
+  CommonUtils.log('NavigationRedux action:', action);
+  CommonUtils.log('NavigationRedux state:', state);
+
+  // console.tron.display({
+  //   name: "NavigationRedux action",
+  //   value: action
+  // });
+  // console.tron.display({
+  //   name: "NavigationRedux state",
+  //   value: state
+  // });
+
   switch (action.type) {
     case AppStateTypes.SET_REHYDRATION_COMPLETE:
-      return NOT_LOGGED_IN_STATE
-    case LoginTypes.LOGOUT:
-      return NOT_LOGGED_IN_STATE
-    case LoginTypes.LOGIN_SUCCESS:
-      return LOGGED_IN_STATE
-    case LoginTypes.AUTO_LOGIN:
-      return LOGGED_IN_STATE
+      return NOT_AUTHENTICATE_STATE
+    case AuthenticateTypes.LOGOUT:
+      return NOT_AUTHENTICATE_STATE
+    case AuthenticateTypes.AUTHENTICATE_SUCCESS:
+      return AUTHENTICATE_STATE
+    case AuthenticateTypes.AUTO_AUTHENTICATE:
+      return AUTHENTICATE_STATE
+    // case SignupTypes.SIGNUP_SUCCESS:
+    //   return AUTHENTICATE_STATE
   }
-  nextState = getStateForAction(action, state)
+  let nextState = getStateForAction(action, state)
+
+  // CommonUtils.log('NavigationRedux nextState:', nextState);
+  // console.tron.display({
+  //   name: "NavigationRedux nextState",
+  //   value: nextState
+  // });
+
+  CommonUtils.log('NavigationRedux nextState:', nextState);
+
   return nextState || state
 }
 

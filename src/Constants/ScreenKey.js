@@ -6,7 +6,6 @@ module.exports = {
   HOME_SCREEN: 'HomeScreen',
   LOGIN_SCREEN: 'LoginScreen',
   SIGNUP_SCREEN: 'SignupScreen',
-  HOME_SCREEN: 'HomeScreen',
   A_STACK: 'AStack',
   A_SCREEN: 'AScreen',
   A_SCREEN_DETAIL: 'AScreenDetail',

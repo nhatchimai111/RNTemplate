@@ -51,7 +51,7 @@
 
 ***Simple log***
 ```
-console.tron.log(<string>)
+console.tron.log(<string>);
 ```
 ***Complex log***
 ```
@@ -61,5 +61,5 @@ console.tron.display({
   preview: <string>,
   important: true,
   // image: 'http://placekitten.com/g/400/400'
-    })
+    });
 ```

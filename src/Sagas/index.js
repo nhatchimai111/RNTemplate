@@ -6,14 +6,18 @@ import DebugConfig from '../Config/DebugConfig';
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux';
-import { LoginTypes } from '../Redux/LoginRedux';
+// import { LoginTypes } from '../Redux/LoginRedux';
+// import { SignupTypes } from '../Redux/SignupRedux';
+import { AuthenticateTypes } from '../Redux/AuthenticateRedux';
 import { MoviesTypes } from '../Redux/MoviesRedux';
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas';
 import { getMovies } from './MoviesSagas';
-import { login } from './LoginSagas';
+// import { login } from './LoginSagas';
+// import { signup } from './SignupSagas';
+import { authenticate } from './AuthenticateSagas';
 
 /* ------------- API ------------- */
 
@@ -27,7 +31,9 @@ export default function * root () {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    takeLatest(LoginTypes.LOGIN_REQUEST, login),
+    // takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
+    // takeLatest(SignupTypes.SIGNUP_REQUEST, signup, api),
+    takeLatest(AuthenticateTypes.AUTHENTICATE_REQUEST, authenticate, api),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(MoviesTypes.GET_MOVIES_REQUEST, getMovies, api)

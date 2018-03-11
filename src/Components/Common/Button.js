@@ -1,11 +1,12 @@
 // Libraries
 import React, { PureComponent } from 'react';
-import { Platform, View, TouchableOpacity, Text } from 'react-native';
+import { Platform, View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
 // Utilities
 import { Colors, Metrics } from '../../Themes';
+import { CommonUtils } from '../../Utils';
 
 // Components
 import Icon from './Icon';
@@ -23,11 +24,17 @@ export default class Button extends PureComponent {
     //   // image: 'http://placekitten.com/g/400/400'
     // })
 
+    // CommonUtils.log("Button render this.prop: ", this.props)
+
     const { onPress, label, isHideLabel, isHideIcon, buttonStyle, buttonIcon,
-      labelWrapper, iconWrapper, iconType, name, titleText, labelText, iconColor } = this.props;
+      labelWrapper, iconWrapper, iconType, name, titleText, labelText, iconColor,
+      isLoading } = this.props;
     const labelView = isHideLabel ? null : <View style={[styles.labelWrapper, labelWrapper]}><Text style={[styles.labelText, labelText]}>{label}</Text></View>;
     const iconView = isHideIcon ? null : <View style={[styles.iconWrapper, iconWrapper]}><Icon iconType={iconType} name={name} color={iconColor} /></View>;
 
+    // if (isLoading) {
+    //   return (<ActivityIndicator size="small" color={Colors.blueSky} />);
+    // }
     return (
       <TouchableOpacity onPress={() => onPress()}
         style={[styles.container, buttonStyle]}>

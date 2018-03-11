@@ -1,6 +1,7 @@
 import { Dimensions, StatusBar, Platform } from 'react-native';
 
 import { Device } from '../Constants';
+import DebugConfig from '../Config/DebugConfig';
 
 // See https://mydevice.io/devices/ for device dimensions
 const X_WIDTH = 375;
@@ -32,5 +33,11 @@ export default {
   getStatusBarHeight() {
 
     return Platform.OS === 'ios' && isIPhoneX() ? Device.IOS_X_STATUS_BAR_HEIGHT : Platform.OS === 'ios' ? Device.IOS_STATUS_BAR_HEIGHT : StatusBar.currentHeight;
+  },
+
+  log(...arg) {
+    if (DebugConfig.isShowLog) {
+      console.log(...arg);
+    }
   }
 }

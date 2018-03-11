@@ -15,13 +15,15 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { ScreenKey } from '../Constants';
 import { Colors, Metrics } from '../Themes';
 import I18n from '../I18n';
+import { CommonUtils } from '../Utils';
 
 //Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
 // Reduxes
-import LoginActions from '../Redux/LoginRedux';
+// import LoginActions from '../Redux/LoginRedux';
+import AuthenticateActions from '../Redux/AuthenticateRedux';
 
 class LoginScreen extends PureComponent {
 
@@ -34,7 +36,7 @@ class LoginScreen extends PureComponent {
   }
 
   render() {
-
+    const { authenticate } = this.props;
     return (
       <View style={styles.container}>
 
@@ -48,7 +50,7 @@ class LoginScreen extends PureComponent {
           <View style={[styles.inputInfoWrapper]}>
             <TextInput
               ref={(email) => (this.inputEmail = email)}
-              style={{color: Colors.black, marginBottom: Platform.OS === 'ios' ? 20 : 0 }}
+              style={{ color: Colors.black, marginBottom: Platform.OS === 'ios' ? 20 : 0 }}
               placeholder={I18n.t('userName').toUpperCase()}
               keyboardType={'email-address'}
               returnKeyType={'next'}
@@ -80,6 +82,7 @@ class LoginScreen extends PureComponent {
             buttonStyle={[styles.button]}
             labelStyle={styles.titleText}
             isHideIcon
+            isLoading={authenticate.fetching}
           />
 
           <Button onPress={() => this.props.navigation.navigate(ScreenKey.SIGNUP_SCREEN)}
@@ -96,21 +99,29 @@ class LoginScreen extends PureComponent {
 
   onPressLogin = () => {
 
-    const { userName, passWord } = this.state
+    const { userName, passWord } = this.state;
+    const { authenticate } = this.props;
     // attempt a login - a saga is listening to pick it up from here.
-    this.props.login(userName, passWord)
+    const user = { userName, passWord };
+    const isSignup = false;
+    const isLogin = true;
+    const param = { isSignup, isLogin, user };
+
+    // CommonUtils.log("Login Screen onPressLogin authentication: ", authentication)
+    authenticate(param);
   }
 }
 
 const mapStateToProps = (state) => {
+  CommonUtils.log("LoginScreen mapStateToProps state: ", state)
   return {
-    fetching: state.login.fetching
+    authenticate: state.authenticate
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (userName, passWord) => dispatch(LoginActions.loginRequest(userName, passWord))
+    authenticate: (param) => dispatch(AuthenticateActions.authenticateRequest(param))
   }
 }
 

@@ -3,12 +3,12 @@ import {
   Platform,
   StyleSheet
 } from 'react-native';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
+// import ExtraDimensions from 'react-native-extra-dimensions-android';
 let { width, height } = Dimensions.get('window');
-if (Platform.OS == 'android') {
-  height = ExtraDimensions.get('REAL_WINDOW_HEIGHT');
-  width = ExtraDimensions.get('REAL_WINDOW_WIDTH');
-}
+// if (Platform.OS == 'android') {
+//   height = ExtraDimensions.get('REAL_WINDOW_HEIGHT');
+//   width = ExtraDimensions.get('REAL_WINDOW_WIDTH');
+// }
 
 // Used via Metrics.baseMargin
 const metrics = {
@@ -25,8 +25,10 @@ const metrics = {
   // screenHeight: width < height ? height : width,
   screenHeight: height,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
-  softMenuBarHeight: ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'),
-  statusBarHeight: (Platform.OS === 'ios') ? 20 : ExtraDimensions.get('STATUS_BAR_HEIGHT'),
+  // softMenuBarHeight: ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'),
+  softMenuBarHeight: 48,
+  // statusBarHeight: (Platform.OS === 'ios') ? 20 : ExtraDimensions.get('STATUS_BAR_HEIGHT'),
+  statusBarHeight: (Platform.OS === 'ios') ? 20 : 25,
   buttonRadius: 4,
   icons: {
     tiny: 15,

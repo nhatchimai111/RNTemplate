@@ -21,7 +21,6 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-extended-stylesheet": "0.8.0",
-    "react-native-extra-dimensions-android": "git+https://github.com/Sunhat/react-native-extra-dimensions-android.git",
     "react-native-i18n": "2.0.10",
     "react-native-smart-splash-screen": "2.3.5",
     "react-native-vector-icons": "4.4.3",
