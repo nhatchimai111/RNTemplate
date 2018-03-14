@@ -1,5 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+
+import { CommonUtils } from "../Utils";
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -35,16 +38,15 @@ export const request = (state) => state.merge({ fetching: true })
 // we've successfully autoAuthenticate
 export const success = (state, action) => {
 
-  console.log('====================================');
-  console.log("AuthenticateRedux success action: ", action);
-  console.log('====================================');
+  // CommonUtils.log('====================================');
+  // CommonUtils.log("AuthenticateRedux success action: ", action);
+  // CommonUtils.log('====================================');
   const { authenticate } = action;
   return state.merge({ fetching: false, error: null, ...authenticate })
 }
 
 // we've had a problem autoAuthenticate
-export const failure = (state, { error }) =>
-  state.merge({ fetching: false, error })
+export const failure = (state, { error }) => state.merge({ fetching: false, error })
 
 // we've logged out
 export const logout = (state) => state.merge(...state, INITIAL_STATE)

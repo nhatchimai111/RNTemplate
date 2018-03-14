@@ -32,9 +32,9 @@ export default class Button extends PureComponent {
     const labelView = isHideLabel ? null : <View style={[styles.labelWrapper, labelWrapper]}><Text style={[styles.labelText, labelText]}>{label}</Text></View>;
     const iconView = isHideIcon ? null : <View style={[styles.iconWrapper, iconWrapper]}><Icon iconType={iconType} name={name} color={iconColor} /></View>;
 
-    // if (isLoading) {
-    //   return (<ActivityIndicator size="small" color={Colors.blueSky} />);
-    // }
+    if (isLoading) {
+      return (<ActivityIndicator size="small" color={Colors.blueSky} />);
+    }
     return (
       <TouchableOpacity onPress={() => onPress()}
         style={[styles.container, buttonStyle]}>

@@ -15,14 +15,13 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { ScreenKey } from '../Constants';
 import { Colors, Metrics } from '../Themes';
 import I18n from '../I18n';
+import { CommonUtils } from "../Utils";
 
 // Components
 import NavBar from '../Components/Common/NavBar';
 import Button from '../Components/Common/Button';
 
 // Reduxes
-// import LoginActions from '../Redux/LoginRedux';
-// import SignupActions from '../Redux/SignupRedux';
 import AuthenticateActions from '../Redux/AuthenticateRedux';
 
 class SignupScreen extends PureComponent {
@@ -38,7 +37,7 @@ class SignupScreen extends PureComponent {
 
   render() {
 
-    const { navigation } = this.props;
+    const { navigation, authentication } = this.props;
 
     return (
       <View style={styles.container}>
@@ -99,6 +98,7 @@ class SignupScreen extends PureComponent {
             buttonStyle={[styles.button]}
             labelStyle={styles.titleText}
             isHideIcon
+            isLoading={authentication.fetching}
           />
 
         </View>
@@ -124,8 +124,9 @@ class SignupScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  // CommonUtils.log("SignupScreen mapStateToProps state: ", state)
   return {
-    fetching: state.authenticate.fetching
+    authentication: state.authenticate
   }
 }
 

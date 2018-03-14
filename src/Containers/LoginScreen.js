@@ -36,7 +36,9 @@ class LoginScreen extends PureComponent {
   }
 
   render() {
-    const { authenticate } = this.props;
+    const { authentication } = this.props;
+
+    // CommonUtils.log('LoginScreen render this.props: ', this.props)
     return (
       <View style={styles.container}>
 
@@ -82,7 +84,7 @@ class LoginScreen extends PureComponent {
             buttonStyle={[styles.button]}
             labelStyle={styles.titleText}
             isHideIcon
-            isLoading={authenticate.fetching}
+            isLoading={authentication.fetching}
           />
 
           <Button onPress={() => this.props.navigation.navigate(ScreenKey.SIGNUP_SCREEN)}
@@ -113,9 +115,9 @@ class LoginScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  CommonUtils.log("LoginScreen mapStateToProps state: ", state)
+  // CommonUtils.log("LoginScreen mapStateToProps state: ", state)
   return {
-    authenticate: state.authenticate
+    authentication: state.authenticate
   }
 }
 

@@ -6,7 +6,7 @@ import MovieActions from '../Redux/MoviesRedux';
 import { CommonUtils } from '../Utils/';
 
 export const selectAithenticateStatus = (state) => {
-  CommonUtils.log('StartupSagas selectLoggedInStatus state: ', state);
+  // CommonUtils.log('StartupSagas selectLoggedInStatus state: ', state);
   return isAuthenticate(state.authenticate)
 };
 

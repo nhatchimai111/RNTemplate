@@ -4,8 +4,6 @@ import MainNav from '../Navigation/AppNavigation';
 import { ScreenKey } from '../Constants';
 
 import { AppStateTypes } from '../Redux/AppStateRedux';
-// import { LoginTypes } from '../Redux/LoginRedux';
-// import { SignupTypes } from '../Redux/SignupRedux';
 import { AuthenticateTypes } from '../Redux/AuthenticateRedux';
 
 import { CommonUtils } from '../Utils'
@@ -37,8 +35,8 @@ const AUTHENTICATE_STATE = getStateForAction(reset({
 
 export function reducer(state = INITIAL_STATE, action) {
 
-  CommonUtils.log('NavigationRedux action:', action);
-  CommonUtils.log('NavigationRedux state:', state);
+  // CommonUtils.log('NavigationRedux action:', action);
+  // CommonUtils.log('NavigationRedux state:', state);
 
   // console.tron.display({
   //   name: "NavigationRedux action",
@@ -58,8 +56,6 @@ export function reducer(state = INITIAL_STATE, action) {
       return AUTHENTICATE_STATE
     case AuthenticateTypes.AUTO_AUTHENTICATE:
       return AUTHENTICATE_STATE
-    // case SignupTypes.SIGNUP_SUCCESS:
-    //   return AUTHENTICATE_STATE
   }
   let nextState = getStateForAction(action, state)
 
@@ -69,7 +65,7 @@ export function reducer(state = INITIAL_STATE, action) {
   //   value: nextState
   // });
 
-  CommonUtils.log('NavigationRedux nextState:', nextState);
+  // CommonUtils.log('NavigationRedux nextState:', nextState);
 
   return nextState || state
 }

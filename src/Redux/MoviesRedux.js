@@ -1,6 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
+import { CommonUtils } from "../Utils";
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -14,33 +16,32 @@ export default Creators
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
-    // data: require('../Fixtures/movies.json')
-    data: {},
-    loading: false,
-    movies: []
+  // data: require('../Fixtures/movies.json')
+  datas: [],
+  fetching: false,
 })
 
 /* ------------- Reducers ------------- */
 
 // Store API
 export const request = (state, action) => {
-  // console.log('====================================');
-  // console.log('MoviesRedux getMovies action: ', action);
-  // console.log('====================================');
+  // CommonUtils.log('====================================');
+  // CommonUtils.log('MoviesRedux getMovies action: ', action);
+  // CommonUtils.log('====================================');
   return state.merge({ fetching: true })
 }
 
 export const success = (state, action) => {
-  // console.log('====================================');
-  // console.log('MoviesRedux getMovies action: ', action);
-  // console.log('====================================');
-  return state.merge({ fetching: false, movies: action.movies })
+  // CommonUtils.log('====================================');
+  // CommonUtils.log('MoviesRedux getMovies action: ', action);
+  // CommonUtils.log('====================================');
+  return state.merge({ fetching: false, datas: action.movies })
 }
 
 export const failure = (state, action) => {
-  // console.log('====================================');
-  // console.log('MoviesRedux getMovies action: ', action);
-  // console.log('====================================');
+  // CommonUtils.log('====================================');
+  // CommonUtils.log('MoviesRedux getMovies action: ', action);
+  // CommonUtils.log('====================================');
   return state.merge({ fetching: false })
 }
 

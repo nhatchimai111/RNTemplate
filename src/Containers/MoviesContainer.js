@@ -10,6 +10,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Utilities
 import { Colors, Metrics } from '../Themes';
+import { CommonUtils } from "../Utils";
 
 // Components
 import Row from '../Components/Movies/RowMovies';
@@ -37,14 +38,14 @@ class MoviesContainer extends PureComponent {
 
   renderMovies = (props) => {
     try {
-      const { moviesData: { fetching, movies } } = props;
+      const { movies: { fetching, datas } } = props;
 
       if (fetching) {
         return (<ActivityIndicator size="large" color={Colors.blueSky} />);
-      } else if (!fetching && movies) {
+      } else if (!fetching && datas) {
         return (
           <FlatList
-            data={movies}
+            data={datas}
             keyExtractor={movie => movie.releaseYear}
             renderItem={movie => <Row movie={movie} />}
             ListHeaderComponent={() => <Header />}
@@ -61,9 +62,12 @@ class MoviesContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  moviesData: state.Movies,
-})
+const mapStateToProps = (state) => {
+  // CommonUtils.log('MoviesContainer mapStateToProps state: ', state);
+  return ({
+    movies: state.movies,
+  })
+}
 
 const mapDispatchToProps = (dispatch) => ({
   getMoviesRequest: () => dispatch(MovieActions.getMoviesRequest()),

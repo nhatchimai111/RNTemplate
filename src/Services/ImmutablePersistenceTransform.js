@@ -1,6 +1,8 @@
 import R from 'ramda';
 import Immutable from 'seamless-immutable';
 
+import { CommonUtils } from "../Utils";
+
 // is this object already Immutable?
 const isImmutable = R.has('asMutable')
 
@@ -16,11 +18,11 @@ const toImmutable = (raw) => Immutable(raw)
 // the transform interface that redux-persist is expecting
 export default {
   out: (state) => {
-    // console.log({ retrieving: state })
+    // CommonUtils.log({ retrieving: state })
     return toImmutable(state)
   },
   in: (raw) => {
-    // console.log({ storing: raw })
+    // CommonUtils.log({ storing: raw })
     return fromImmutable(raw)
   }
 }

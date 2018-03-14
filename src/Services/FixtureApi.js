@@ -10,7 +10,7 @@ export default {
   },
 
   signup(user) {
-    CommonUtils.log('FixtureApi signup user: ', user);
+    // CommonUtils.log('FixtureApi signup user: ', user);
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign({}, {
@@ -25,7 +25,7 @@ export default {
   },
 
   login(user) {
-    CommonUtils.log('FixtureApi signup user: ', user);
+    // CommonUtils.log('FixtureApi signup user: ', user);
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign({}, {

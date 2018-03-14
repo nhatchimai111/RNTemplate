@@ -27,7 +27,7 @@
 * [React Redux](https://github.com/reactjs/react-redux)
 * [Redux](https://github.com/reactjs/redux)
 * [Redux Persist](https://github.com/rt2zz/redux-persist)
-* [Redux Saga](https://github.com/redux-saga/redux-saga)
+* [Redux Saga](https://github.com/redux-saga/redux-saga) | [Saga Tutorial](https://viblo.asia/p/redux-middleware-redux-saga-gGJ59X7jlX2)
 * [Apisauce](https://github.com/infinitered/apisauce)
 * [Redux Sauce](https://github.com/infinitered/reduxsauce)
 * [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
@@ -49,7 +49,7 @@
 [Install Reactotron](https://github.com/infinitered/reactotron/blob/master/docs/installing.md)
 
 
-***Simple log***
+***Simple Log***
 ```
 console.tron.log(<string>);
 ```
@@ -62,4 +62,13 @@ console.tron.display({
   important: true,
   // image: 'http://placekitten.com/g/400/400'
     });
+```
+
+***Or Console Log***
+```
+  import { CommonUtils } from './Utils';
+
+  ...
+
+  CommonUtils.log('Log ABC object: ', object);
 ```

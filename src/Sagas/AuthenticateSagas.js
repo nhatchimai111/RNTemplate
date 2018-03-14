@@ -11,12 +11,12 @@ export function* authenticate(api, param) {
 
         const { user, isSignup, isLogin } = param.authenticate;
 
-        CommonUtils.log('AuthenticateSagas authenticate param: ', param);
+        // CommonUtils.log('AuthenticateSagas authenticate param: ', param);
 
         const response = isSignup ? yield call(api.signup, user) : yield call(api.login, user);
         const authenticate = { isLogin, isSignup, ...response };
 
-        CommonUtils.log('AuthenticateSagas authenticate: ', authenticate);
+        // CommonUtils.log('AuthenticateSagas authenticate: ', authenticate);
 
         if (user.passWord === '') {
             // dispatch failure
