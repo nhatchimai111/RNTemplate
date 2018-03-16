@@ -14,7 +14,7 @@ import { CommonUtils } from '../Utils';
 import Button from '../Components/Common/Button';
 
 // Reduxes
-import LoginActions from '../Redux/LoginRedux';
+import AuthenticateActions from '../Redux/AuthenticateRedux';
 
 class DrawerContainer extends PureComponent {
 
@@ -129,7 +129,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(LoginActions.logout())
+    logout: () => dispatch(AuthenticateActions.logout())
   }
 }
 
